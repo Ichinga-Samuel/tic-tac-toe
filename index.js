@@ -31,16 +31,20 @@ function checkGame(){
     new Set([gb[0], gb[4], gb[8]]),
     new Set([gb[2], gb[4], gb[6]]),
   ];
+  console.log(winArrays)
   // If all the elements of a set are the same then it will have a size of one
   // by filtering the array of winning combinations we obtain arrays of size 1 that have either "X" or "0"
   let fil = winArrays.filter(x => (x.has("X") || x.has("O")) && (x.size === 1))
+  console.log(fil)
   if(fil.length){
     let winner = fil[0].has("X") ? "X": "O";
     document.getElementById('win').innerText = `The Winner is Player ${winner}`
     gameButtons.forEach(button => button.setAttribute('disabled', true))
+    return;
   }
   // check completion. If no button has an empty text. then game is over
   let empty = gb.filter(x => !x)
+  console.log(empty)
   if(!empty.length){
     document.getElementById('win').innerText = "Game Over!!! Nobody Won"
     gameButtons.forEach(button => button.setAttribute('disabled', true))
